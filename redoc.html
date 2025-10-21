@@ -7,6 +7,9 @@
   </head>
   <body>
     <redoc spec-url="openapi.yaml"></redoc>
+    <script>
+      Redoc.init('openapi.yaml', {}, document.querySelector('redoc'));
+    </script>
   </body>
 </html>
 
