@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Book Management API Project
-  description: API documentation for managing books and authors.
+  description: Project for API documentation for managing books and authors.
   version: 1.0.0
   contact:
     name: API Support
