@@ -3,7 +3,7 @@ name: Deploy API Docs to GitHub Pages
 on:
   push:
     branches:
-      - master  # or master if your repo uses that
+      - master   # change to 'master' if your repo’s default branch is master
 
 permissions:
   contents: write
@@ -12,25 +12,30 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # 1️⃣ Checkout your repository
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # 2️⃣ Set up Node.js (required for redoc-cli)
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
+      # 3️⃣ Generate ReDoc HTML file
       - name: Build ReDoc HTML
         run: |
           mkdir -p public
           npx redoc-cli bundle openapi.yaml -o public/redoc.html
 
+      # 4️⃣ Copy Swagger UI files into public folder
       - name: Copy Swagger UI
         run: |
           mkdir -p public/swagger
           cp -r swagger/* public/swagger/
           cp swagger/index.html public/index.html
 
+      # 5️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
