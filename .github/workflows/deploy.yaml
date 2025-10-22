@@ -1,9 +1,9 @@
-name: Deploy ReDoc to GitHub Pages
+name: Deploy API Docs to GitHub Pages
 
 on:
   push:
     branches:
-      - master  # or master (whichever is your default branch)
+      - master  # or master if your repo uses that
 
 permissions:
   contents: write
@@ -22,13 +22,18 @@ jobs:
 
       - name: Build ReDoc HTML
         run: |
-          mkdir public
-          npx redoc-cli bundle openapi.yaml -o public/index.html
+          mkdir -p public
+          npx redoc-cli bundle openapi.yaml -o public/redoc.html
+
+      - name: Copy Swagger UI
+        run: |
+          mkdir -p public/swagger
+          cp -r swagger/* public/swagger/
+          cp swagger/index.html public/index.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-
 
