@@ -6,7 +6,10 @@
     <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
   </head>
   <body>
-    <redoc spec-url="https://chaitramara-dell.github.io/BookApi/openapi.yaml"></redoc>
+    <redoc spec-url="openapi.yaml"></redoc>
+    <script>
+      Redoc.init('openapi.yaml', {}, document.querySelector('redoc'));
+    </script>
   </body>
 </html>
 
