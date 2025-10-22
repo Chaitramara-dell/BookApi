@@ -23,7 +23,7 @@ jobs:
       - name: Build ReDoc HTML
         run: |
           mkdir public
-          npx redoc-cli bundle openapi.yaml -o index.html
+          npx redoc-cli bundle openapi.yaml -o public/index.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
